@@ -2,15 +2,15 @@ import argparse
 from time import sleep
 import keyboard
 
-def on_space_press(event, state):
+def on_space_press(event, space_button_state):
     """This function updates the state to True when Space key is pressed"""
-    state['space_button'] = True
+    space_button_state[0] = True
 
 def run_counter(num_sec):
-    space_button_state = {'space_button': False}
+    space_button_state = [False]
     keyboard.on_press_key('space', lambda event: on_space_press(event, space_button_state))
     for i in range(num_sec):
-        if space_button_state['space_button']:
+        if space_button_state[0]:
             break
         print(i)
         sleep(1)
