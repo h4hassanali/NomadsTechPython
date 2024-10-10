@@ -27,32 +27,14 @@ def on_space_press(event):
     global space_button
     space_button = True
 
-def num_generator(num_sec):
-    """ I have used generator because of its memory efficiency,
-    As generator doesnt store all values once in memory , hence 
-    for the case of large number of data it will help us out"""
-    for number in range(num_sec):
-        yield number # yield pause the execution..
-
 def run_counter(num_sec):
-    """ This function run the counter app, it first generate
-    a number, then a event lister is added in which two arguments
-    are passed , one is the key from keyboard and other is the
-    callback function , on_press_key is higher order function,
-    In loop we generate next number while continuously checking
-    for the value of space_button. """
-    num = num_generator(num_sec)
     keyboard.on_press_key('space', on_space_press)
     for i in range(num_sec):
         if space_button:
             break
-        print(next(num))
+        print(i)
         sleep(1)
 
 space_button = False
 seconds = int(argv[1])
 run_counter(seconds)
-
-
-
-
